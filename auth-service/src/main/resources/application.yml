@@ -1,0 +1,19 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: auth-service
+  config:
+    import: configserver:http://localhost:8888/
+  main:
+    web-application-type: reactive
+
+eureka:
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://localhost:9095/eureka/
+
+
