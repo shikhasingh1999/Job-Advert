@@ -9,11 +9,10 @@ spring:
   main:
     web-application-type: reactive
 
-eureka:
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://localhost:9095/eureka/
-
+#eureka:
+#  client:
+#    registerWithEureka: true
+#    serviceUrl:
+#      defaultZone: http://localhost:9095/eureka/
+#
 

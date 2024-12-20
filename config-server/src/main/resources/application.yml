@@ -10,5 +10,14 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/devsyx/spring-boot-microservices
+          username: shikhasingh1999
+          password: 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
+          uri: https://github.com/shikhasingh1999/SpringBootProject
           search-paths: config
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9095/eureka/
+
