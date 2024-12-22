@@ -8,12 +8,14 @@ import com.example.auth.model.RegisterRequest;
 import com.example.auth.service.AuthService;
 import com.example.auth.service.impl.common.JwtService;
 import com.example.common.exception.WrongCredentialsException;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class AuthServiceImpl implements AuthService {
 
     private final UserServiceClient userServiceClient;
@@ -21,12 +23,6 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
 
     private final JwtService jwtService;
-
-    public AuthServiceImpl(UserServiceClient userServiceClient, AuthenticationManager authenticationManager, JwtService jwtService) {
-        this.userServiceClient = userServiceClient;
-        this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
-    }
 
     @Override
     public RegisterDto register (RegisterRequest request) {
