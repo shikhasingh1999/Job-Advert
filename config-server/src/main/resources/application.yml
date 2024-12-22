@@ -16,8 +16,3 @@ spring:
           search-paths: config
 
 
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:9095/eureka/
-

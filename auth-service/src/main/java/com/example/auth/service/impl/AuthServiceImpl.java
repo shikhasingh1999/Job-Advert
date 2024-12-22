@@ -7,7 +7,7 @@ import com.example.auth.model.LoginRequest;
 import com.example.auth.model.RegisterRequest;
 import com.example.auth.service.AuthService;
 import com.example.auth.service.impl.common.JwtService;
-import com.example.gateway.exception.WrongCredentialsException;
+import com.example.common.exception.WrongCredentialsException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;

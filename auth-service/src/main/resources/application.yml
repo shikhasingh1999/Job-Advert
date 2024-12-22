@@ -6,13 +6,5 @@ spring:
     name: auth-service
   config:
     import: configserver:http://localhost:8888/
-  main:
-    web-application-type: reactive
-
-#eureka:
-#  client:
-#    registerWithEureka: true
-#    serviceUrl:
-#      defaultZone: http://localhost:9095/eureka/
-#
-
+#  main:
+#    web-application-type: reactive

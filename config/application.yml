@@ -4,3 +4,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${EUREKA_URI:http://localhost:9095/eureka}
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/springbootProject
+    username: postgres
+    password: admin
