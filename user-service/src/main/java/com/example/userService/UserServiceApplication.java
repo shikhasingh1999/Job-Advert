@@ -12,7 +12,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@ComponentScan(basePackages = {"com.example.common"})
+@ComponentScan(basePackages = {"com.example.common", "com.example.userService"})
 public class UserServiceApplication implements CommandLineRunner {
 
 	private final UserRepository userRepository;
