@@ -11,6 +11,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+import static com.example.userService.constants.Constant.USER_NOT_FOUND;
+
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
@@ -40,11 +44,26 @@ public class UserServiceImpl implements UserService {
         return findUserByEmail(email);
     }
 
+    @Override
+    public User getUserByUsername(String username) {
+        return findUserByUsername(username);
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userRepository.findAllByActive(Active.ACTIVE);
+    }
+
     private User findUserById(String id) {
-        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("User not found"));
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
     }
 
     private User findUserByEmail(String email) {
-        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("User not found"));
+        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
+    }
+
+    private User findUserByUsername (String username) {
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new NotFoundException(USER_NOT_FOUND));
     }
 }

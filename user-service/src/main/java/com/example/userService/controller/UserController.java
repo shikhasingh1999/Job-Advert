@@ -1,5 +1,6 @@
 package com.example.userService.controller;
 
+import com.example.userService.dto.AuthUserDto;
 import com.example.userService.dto.UserDto;
 import com.example.userService.model.RegisterRequest;
 import com.example.userService.service.UserService;
@@ -7,7 +8,10 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/v1/user")
@@ -30,5 +34,17 @@ public class UserController {
     @GetMapping("/getUserByEmail/{email}")
     public ResponseEntity<UserDto> getUserByEmail (@PathVariable String email) {
         return ResponseEntity.ok(modelMapper.map(userService.getUserByEmail(email), UserDto.class));
+    }
+
+    @GetMapping("/getUserByUsername/{username}")
+    public ResponseEntity<AuthUserDto>  getUserByUsername (@PathVariable String username) {
+        return ResponseEntity.ok(modelMapper.map(userService.getUserByUsername(username), AuthUserDto.class));
+    }
+
+    @GetMapping("getAll")
+    @PreAuthorize("hasRole('ACTIVE')")
+    public ResponseEntity<List<UserDto>> getAll () {
+        return ResponseEntity.ok(userService.getAll().stream()
+                .map(user -> modelMapper.map(user, UserDto.class)).toList());
     }
 }
