@@ -3,6 +3,7 @@ package com.example.userService.controller;
 import com.example.userService.dto.AuthUserDto;
 import com.example.userService.dto.UserDto;
 import com.example.userService.model.RegisterRequest;
+import com.example.userService.model.UpdateUserRequest;
 import com.example.userService.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -41,10 +43,18 @@ public class UserController {
         return ResponseEntity.ok(modelMapper.map(userService.getUserByUsername(username), AuthUserDto.class));
     }
 
-    @GetMapping("getAll")
-    @PreAuthorize("hasRole('ACTIVE')")
+    @GetMapping("/getAll")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<List<UserDto>> getAll () {
         return ResponseEntity.ok(userService.getAll().stream()
                 .map(user -> modelMapper.map(user, UserDto.class)).toList());
     }
+
+    @PutMapping("/update")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<UserDto> updateUserById (@Valid @RequestPart UpdateUserRequest userRequest,
+                                                   @RequestPart(required = false) MultipartFile file) {
+        return ResponseEntity.ok(modelMapper.map(userService.updateUserById(userRequest, file), UserDto.class));
+    }
+
 }

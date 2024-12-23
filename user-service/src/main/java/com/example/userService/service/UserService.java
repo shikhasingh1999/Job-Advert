@@ -2,7 +2,9 @@ package com.example.userService.service;
 
 import com.example.common.entity.User;
 import com.example.userService.model.RegisterRequest;
+import com.example.userService.model.UpdateUserRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,4 +20,6 @@ public interface UserService {
     User getUserByUsername(String username);
 
     List<User> getAll();
+
+    User updateUserById(UpdateUserRequest userRequest, MultipartFile file);
 }
