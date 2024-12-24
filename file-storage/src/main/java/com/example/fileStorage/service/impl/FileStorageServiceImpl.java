@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.UUID;
 
 @Service
@@ -61,5 +62,41 @@ public class FileStorageServiceImpl implements FileStorageService {
                 .build());
 
         return uuid;
+    }
+
+    @Override
+    public byte[] downloadImageFromFileSystem(String id) {
+        try {
+            return Files.readAllBytes(new File(findFileById(id).getFilePath()).toPath());
+        } catch (IOException e) {
+            throw GenericErrorResponse.builder()
+                    .message("Unable to read file from storage")
+                    .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
+        }
+    }
+
+    @Override
+    public void deleteImageFromFileSystem(String id) {
+        File file = new File(findFileById(id).getFilePath());
+
+        boolean deletionResult = file.delete();
+        if (deletionResult) {
+            fileStorageRepository.deleteById(id);
+        }
+        else {
+            throw GenericErrorResponse.builder()
+                    .message("Unable to delete file from storage")
+                    .httpStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .build();
+        }
+    }
+
+    private com.example.fileStorage.entity.File findFileById(String id) {
+        return fileStorageRepository.findById(id)
+                .orElseThrow(() -> GenericErrorResponse.builder()
+                        .message("File not found")
+                        .httpStatus(HttpStatus.NOT_FOUND)
+                        .build());
     }
 }
