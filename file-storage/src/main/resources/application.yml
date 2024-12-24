@@ -5,4 +5,4 @@ spring:
   application:
     name: file-storage
   config:
-    import: configserver:http://localhost:8080/
+    import: configserver:http://localhost:8888/
