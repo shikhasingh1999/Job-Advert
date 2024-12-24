@@ -11,7 +11,7 @@ public class RegisterRequest {
     private String username;
 
     @NotNull(message = "Password is required")
-    @Pattern(regexp = "", message = "Password must be at least 8 characters and contain at least 1 letter and 1 number")
+    @Pattern(regexp = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d]{8,}$", message = "Password must be at least 8 characters and contain at least 1 letter and 1 number")
     private String password;
 
     @Email(message = "Email should be valid")
