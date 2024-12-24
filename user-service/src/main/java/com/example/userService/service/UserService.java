@@ -22,4 +22,6 @@ public interface UserService {
     List<User> getAll();
 
     User updateUserById(UpdateUserRequest userRequest, MultipartFile file);
+
+    void deleteUserById(String id);
 }

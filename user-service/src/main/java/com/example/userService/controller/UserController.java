@@ -57,4 +57,11 @@ public class UserController {
         return ResponseEntity.ok(modelMapper.map(userService.updateUserById(userRequest, file), UserDto.class));
     }
 
+    @DeleteMapping("/deleteUserById/{id}")
+    @PreAuthorize("hasRole('ADMIN') or @userService.getUserById(#request.id).username == principal")
+    public ResponseEntity<Void> deleteUserById (@PathVariable String id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.ok().build();
+    }
+
 }
