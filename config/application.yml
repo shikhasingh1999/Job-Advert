@@ -10,3 +10,7 @@ spring:
     url: jdbc:postgresql://localhost:5432/springbootProject
     username: postgres
     password: admin
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update

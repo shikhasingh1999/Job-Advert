@@ -1,13 +1,12 @@
 package com.example.jobService.service.impl;
 
 import com.example.common.entity.Category;
-import com.example.common.entity.Job;
 import com.example.common.repository.CategoryRepository;
 import com.example.jobService.client.FileStorageClient;
+import com.example.jobService.exception.NotFoundException;
 import com.example.jobService.model.category.CategoryCreateRequest;
 import com.example.jobService.model.category.CategoryUpdateRequest;
 import com.example.jobService.service.CategoryService;
-import jakarta.ws.rs.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
