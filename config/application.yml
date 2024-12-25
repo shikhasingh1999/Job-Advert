@@ -14,3 +14,7 @@ spring:
     database: postgresql
     hibernate:
       ddl-auto: update
+
+application-description: SpringBoot Project 2024
+application-license: API Licence
+application-version: 1.0
