@@ -25,10 +25,12 @@ public class OpenApiConfig {
                     .description(description)
                     .version(version)
                     .license(new License().name(license)))
-                .addSecurityItem(new SecurityRequirement()
-                        .addList("Bearer Authentication"))
-                .components(new Components()
-                        .addSecuritySchemes("Bearer Authentication", createAPIKeyScheme())
+                .addSecurityItem(new SecurityRequirement()  //  define security requirements for the single operation (when applied at method level) or for all operations of a class (when applied at class level).
+                        .addList("Bearer Authentication"))  // name of the security to be applied
+                .components(new Components()    // add a new component for security
+                        .addSecuritySchemes("Bearer Authentication", createAPIKeyScheme())  // add the security scheme to the component which defines what type of security to be applied
+                        // security scheme name is the key -> eg "Bearer Authentication"
+                        // then define that securityScheme with type, scheme, format etc.
                 );
 
     }
