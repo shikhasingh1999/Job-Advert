@@ -24,6 +24,7 @@ import static com.example.userService.constants.Constant.USER_NOT_FOUND;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
+    // @RequiredArgsConstructor only considers final fields.
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
